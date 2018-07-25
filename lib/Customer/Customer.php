@@ -52,9 +52,19 @@ class Customer
     private $name;
 
     /**
+     * @var string
+     */    
+    private $externalId;
+
+    /**
      * @var PagarMe\Sdk\Customer\Phone
      */
     private $phone;
+
+    /**
+     * @var string
+     */
+    private $type;
 
     /**
      * @param array $arrayData
@@ -116,6 +126,24 @@ class Customer
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     * @return string
+     */
+    public function getExternalId()
+    {
+        return $this->externalId;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 
     /**
