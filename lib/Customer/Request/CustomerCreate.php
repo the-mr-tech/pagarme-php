@@ -8,6 +8,11 @@ use PagarMe\Sdk\Customer\Phone;
 
 class CustomerCreate implements RequestInterface
 {
+    /**
+     * @var string |Identificador do cliente na loja
+     */ 
+    private $externalId;
+     
      /**
      * @var string | Nome ou razão social do comprador
      */
@@ -32,6 +37,11 @@ class CustomerCreate implements RequestInterface
      * @var Phone | Telefone do comprador
      */
     private $phone;
+     
+     /**
+     * @var string | Tipo de documento
+     */
+    private $type;
 
      /**
      * @var string | Data de nascimento ex: '13121988'
@@ -53,19 +63,23 @@ class CustomerCreate implements RequestInterface
      * @param string $gender
      */
     public function __construct(
+        $externalId,
         $name,
         $email,
         $documentNumber,
         Address $address,
         Phone $phone,
+        $type,
         $bornAt,
         $gender
     ) {
+        $this->externalId     = $externalId;
         $this->name           = $name;
         $this->email          = $email;
         $this->documentNumber = $documentNumber;
         $this->address        = $address;
         $this->phone          = $phone;
+        $this->type           = $type;
         $this->bornAt         = $bornAt;
         $this->gender         = $gender;
     }
@@ -76,11 +90,13 @@ class CustomerCreate implements RequestInterface
     public function getPayload()
     {
         return [
+            'external_id'     => $this->externalId,
             'name'            => $this->name,
             'email'           => $this->email,
             'document_number' => $this->documentNumber,
             'address'         => $this->getAddresssData(),
             'phone'           => $this->getPhoneData(),
+            'type'            => $this->type,
             'born_at'         => $this->bornAt,
             'gender'          => $this->gender
         ];
