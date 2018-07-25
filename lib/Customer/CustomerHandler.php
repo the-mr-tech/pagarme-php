@@ -24,20 +24,24 @@ class CustomerHandler extends AbstractHandler
      * @param string $gender
      */
     public function create(
+        $externalId,
         $name,
         $email,
         $documentNumber,
         Address $address,
         Phone $phone,
+        $type = 'individual',
         $bornAt = null,
         $gender = null
     ) {
         $request = new CustomerCreate(
+            $externalId
             $name,
             $email,
             $documentNumber,
             $address,
             $phone,
+            $type,
             $bornAt,
             $gender
         );
