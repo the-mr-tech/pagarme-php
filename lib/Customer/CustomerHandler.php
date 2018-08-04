@@ -35,7 +35,7 @@ class CustomerHandler extends AbstractHandler
         $gender = null
     ) {
         $request = new CustomerCreate(
-            $externalId
+            $externalId,
             $name,
             $email,
             $documentNumber,
