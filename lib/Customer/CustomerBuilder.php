@@ -10,11 +10,15 @@ trait CustomerBuilder
      */
     private function buildCustomer($customerData)
     {
-        $customerData->address = new Address(
-            get_object_vars($customerData->addresses[0])
-        );
+        if(sizeof($customerData->addresses)>0){
+            $customerData->address = new Address(
+                get_object_vars($customerData->addresses[0])
+            );
+        }
 
-        $customerData->phone = new Phone($customerData->phones[0]);
+        if(sizeof($customerData->phones)>0){
+            $customerData->phone = new Phone($customerData->phones[0]);
+        }
 
         $customerData->date_created = new \DateTime(
             $customerData->date_created
