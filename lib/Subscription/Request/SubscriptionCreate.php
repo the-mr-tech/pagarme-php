@@ -64,6 +64,8 @@ abstract class SubscriptionCreate implements RequestInterface
      */
     public function getPayload()
     {
+        $documents = $this->getDocumentsData();
+
         $payload = [
             'plan_id'        => $this->plan->getId(),
             'payment_method' => $this->paymentMethod,
@@ -75,10 +77,15 @@ abstract class SubscriptionCreate implements RequestInterface
                 'type'            => $this->customer->getType(),
                 'country'         => $this->customer->getCountry(),
                 'phone_numbers'   => $this->customer->getPhoneNumbers(),
-                'documents'       => $this->getDocumentsData()
+                'documents'       => $documents,
             ],
             'postback_url' => $this->postbackUrl
         ];
+
+        if (count($documents) > 0) {
+            $payload['customer']['document_type'] = $documents[0]['type'];
+            $payload['customer']['document_number'] = $documents[0]['number'];
+        }
 
         if (!is_null($this->customer->getId())) {
             $payload['customer']['id'] = $this->customer->getId();
