@@ -138,6 +138,16 @@ abstract class AbstractTransaction
     protected $customer;
 
     /**
+     * @var \PagarMe\Sdk\Customer\Billing
+     */
+    protected $billing;
+
+    /**
+     * @var array|\PagarMe\Sdk\Customer\Item
+     */
+    protected $items;
+
+    /**
      * @var array
      */
     protected $metadata;
@@ -389,6 +399,22 @@ abstract class AbstractTransaction
     public function getCustomer()
     {
         return $this->customer;
+    }
+
+    /**
+     * @return \PagarMe\Sdk\Customer\Billing
+     */
+    public function getBilling()
+    {
+        return $this->billing;
+    }
+
+    /**
+     * @return array|\PagarMe\Sdk\Customer\Item
+     */
+    public function getItems()
+    {
+        return $this->items;
     }
 
     /**

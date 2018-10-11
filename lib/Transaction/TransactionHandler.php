@@ -4,6 +4,8 @@ namespace PagarMe\Sdk\Transaction;
 
 use PagarMe\Sdk\AbstractHandler;
 use PagarMe\Sdk\Client;
+use PagarMe\Sdk\Customer\Billing;
+use PagarMe\Sdk\Customer\Item;
 use PagarMe\Sdk\Payable\PayableBuilder;
 use PagarMe\Sdk\Transaction\Request\CreditCardTransactionCreate;
 use PagarMe\Sdk\Transaction\Request\BoletoTransactionCreate;
@@ -31,6 +33,8 @@ class TransactionHandler extends AbstractHandler
      * @param int $amount
      * @param \PagarMe\Sdk\Card\Card $card
      * @param \PagarMe\Sdk\Customer\Customer $customer
+     * @param \PagarMe\Sdk\Customer\Billing $billing
+     * @param array|\PagarMe\Sdk\Customer\Item $items
      * @param int $installments
      * @param boolean $capture
      * @param string $postBackUrl
@@ -42,6 +46,8 @@ class TransactionHandler extends AbstractHandler
         $amount,
         Card $card,
         Customer $customer,
+        Billing $billing,
+        array $items,
         $installments = 1,
         $capture = true,
         $postBackUrl = null,
@@ -53,6 +59,8 @@ class TransactionHandler extends AbstractHandler
                 'amount'       => $amount,
                 'card'         => $card,
                 'customer'     => $customer,
+                'billing'      => $billing,
+                'items'        => $items,
                 'installments' => $installments,
                 'capture'      => $capture,
                 'postbackUrl'  => $postBackUrl,
@@ -71,6 +79,8 @@ class TransactionHandler extends AbstractHandler
     /**
      * @param int $amount
      * @param \PagarMe\Sdk\Customer\Customer $customer
+     * @param \PagarMe\Sdk\Customer\Billing $billing
+     * @param array|\PagarMe\Sdk\Customer\Item $items
      * @param string $postBackUrl
      * @param mixed $metadata
      * @param array $extraAttributes
@@ -79,6 +89,8 @@ class TransactionHandler extends AbstractHandler
     public function boletoTransaction(
         $amount,
         Customer $customer,
+        Billing $billing,
+        array $items,
         $postBackUrl,
         $metadata = null,
         $extraAttributes = []
@@ -87,6 +99,8 @@ class TransactionHandler extends AbstractHandler
             [
                 'amount'      => $amount,
                 'customer'    => $customer,
+                'billing'     => $billing,
+                'items'       => $items,
                 'postbackUrl' => $postBackUrl,
                 'metadata'    => $metadata
             ],
