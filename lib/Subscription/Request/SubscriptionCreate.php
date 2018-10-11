@@ -126,12 +126,13 @@ abstract class SubscriptionCreate implements RequestInterface
             return [];
         }
 
-        $documentsData = array_map(function ($document) {
-            return [
+        $documentsData = [];
+        foreach ($documents as $document) {
+            $documentsData[] = [
                 'type' => $document->getType(),
                 'number' => $document->getNumber()
             ];
-        }, (array) $documents);
+        }
 
         return $documentsData;
     }
