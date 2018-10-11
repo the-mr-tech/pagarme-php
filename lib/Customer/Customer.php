@@ -53,7 +53,7 @@ class Customer
 
     /**
      * @var string
-     */    
+     */
     private $externalId;
 
     /**
@@ -65,6 +65,11 @@ class Customer
      * @var string
      */
     private $type;
+
+    /**
+     * @var string
+     */
+    private $country;
 
     /**
      * @param array $arrayData
@@ -180,5 +185,14 @@ class Customer
     public function getDocumentType()
     {
         return $this->documentType;
+    }
+
+    /**
+     * @codeCoverageIgnore
+     * @return string
+     */
+    public function getCountry()
+    {
+        return $this->country;
     }
 }

@@ -58,6 +58,10 @@ class TransactionCreate implements RequestInterface
             $customerData['type'] = $customer->getType();
         }
 
+        if (!is_null($customer->getCountry())) {
+            $customerData['country'] = $customer->getCountry();
+        }
+
         $customerData = array_merge(
             $customerData,
             $this->getCustomerAddressData($customer),
