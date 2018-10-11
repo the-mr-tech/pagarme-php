@@ -131,7 +131,7 @@ abstract class SubscriptionCreate implements RequestInterface
                 'type' => $document->getType(),
                 'number' => $document->getNumber()
             ];
-        }, $documents);
+        }, (array) $documents);
 
         return $documentsData;
     }
