@@ -44,6 +44,7 @@ class TransactionCreate implements RequestInterface
         $customerData = [
             'name'            => $customer->getName(),
             'document_number' => $customer->getDocumentNumber(),
+            'document_type'   => $customer->getDocumentType(),
             'email'           => $customer->getEmail(),
             'sex'             => $customer->getGender(),
             'born_at'         => $customer->getBornAt()
@@ -51,6 +52,10 @@ class TransactionCreate implements RequestInterface
 
         if (!is_null($customer->getId())) {
             $customerData['id'] = $customer->getId();
+        }
+
+        if (!is_null($customer->getType())) {
+            $customerData['type'] = $customer->getType();
         }
 
         $customerData = array_merge(
@@ -130,10 +135,10 @@ class TransactionCreate implements RequestInterface
         }
 
         return [
-            'phone' => [
-                'number' => (string) $phone->getNumber(),
-                'ddd'    => (string) $phone->getDdd(),
-                'ddi'    => (string) $phone->getDdi()
+            'phone_numbers' => [
+                ((string) $phone->getDdi()) .
+                ((string) $phone->getDdd()) .
+                ((string) $phone->getNumber())
             ]
         ];
     }
