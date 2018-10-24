@@ -16,7 +16,7 @@ trait ItemBuilder
 
         if (is_array($ItemData)) {
             foreach ($ItemData as $item) {
-                $items[] = new Item(get_object_vars($item));
+                $items[] = new Item(!is_array($item) ? get_object_vars($item) : $item);
             }
         }
 

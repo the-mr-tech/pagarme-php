@@ -14,7 +14,7 @@ trait DocumentBuilder
 
         if (is_array($DocumentData)) {
             foreach ($DocumentData as $document) {
-                $documents[] = new Document(get_object_vars($document));
+                $documents[] = new Document(!is_array($document) ? get_object_vars($document) : $document);
             }
         }
 
